@@ -11,7 +11,7 @@ Bu proje, Survivor yarışması için bir Web API uygulamasıdır. Yarışmacıl
 
 ## Kullanılan Teknolojiler
 
-- **.NET 6**: Web API geliştirme platformu.
+- **.NET 8**: Web API geliştirme platformu.
 - **Entity Framework Core**: ORM (Object-Relational Mapping) aracı.
 - **SQL Server**: Veritabanı yönetim sistemi.
 - **Swagger**: API dokümantasyonu ve test arayüzü.
@@ -32,15 +32,21 @@ Projeyi bilgisayarınıza klonlamak için aşağıdaki komutu kullanın:
 ```bash
 git clone https://github.com/kullanici-adiniz/survivor-api.git
 cd survivor-api
+```
+
 ### 3. Veritabanı Ayarları
 
 1. SQL Server'da yeni bir veritabanı oluşturun (örneğin, `Survivor`).
 2. `appsettings.json` dosyasındaki bağlantı dizesini güncelleyin:
 
 ```json
-"ConnectionStrings": {
-  "DefaultConnection": "Server=SUNUCU_ADI;Database=Survivor;Trusted_Connection=True;TrustServerCertificate=True;"
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=SUNUCU_ADI;Database=Survivor;Trusted_Connection=True;TrustServerCertificate=True;"
+  }
 }
+```
+
 ### 4. Migration'ları Uygulama
 
 Veritabanını oluşturmak ve güncellemek için aşağıdaki komutları çalıştırın:
@@ -48,12 +54,15 @@ Veritabanını oluşturmak ve güncellemek için aşağıdaki komutları çalı�
 ```bash
 dotnet ef migrations add InitialCreate
 dotnet ef database update
+```
+
 ### 5. Projeyi Çalıştırma
 
 Projeyi çalıştırmak için aşağıdaki komutu kullanın:
 
 ```bash
 dotnet run
+```
 
 ## API Endpoint'leri
 
@@ -63,7 +72,18 @@ dotnet run
 - **Belirli Bir Kategoriyi Getir**: `GET /api/categories/{id}`
 - **Yeni Kategori Ekle**: `POST /api/categories`
 - **Kategori Güncelle**: `PUT /api/categories/{id}`
-### Görseller
+
+### Yarışmacılar (Competitors)
+
+- **Tüm Yarışmacıları Listele**: `GET /api/competitors`
+- **Belirli Bir Yarışmacıyı Getir**: `GET /api/competitors/{id}`
+- **Kategoriye Göre Yarışmacıları Listele**: `GET /api/competitors/categories/{categoryId}`
+- **Yeni Yarışmacı Ekle**: `POST /api/competitors`
+- **Yarışmacı Güncelle**: `PUT /api/competitors/{id}`
+- **Yarışmacı Sil**: `DELETE /api/competitors/{id}`
+
+## Görseller
+
 ![db](https://github.com/ugurarican/Survivor/blob/master/survivor-db.png)
 ![OneToMany](https://github.com/ugurarican/Survivor/blob/master/survivor-oneToMany.png)
 ![swagger](https://github.com/ugurarican/Survivor/blob/master/survivor-swagger.png)
